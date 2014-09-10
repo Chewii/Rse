@@ -1,0 +1,15 @@
+public class TestRse{
+
+    static Rse test = new Rse();
+
+   //Skapar en ny instans av klassen Rse för att komma åt metoden.
+
+    public static void main(String[] args){
+
+	int [][] b = { {0,0,3},{0,0,3},{0,0,2}
+	};
+
+	System.out.println(test.allRowSumsEqual(b));
+	//Kallar Rse klassen allRowSumsEqual med argumentet a.
+    }
+}
