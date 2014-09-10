@@ -1,71 +1,57 @@
 
-
 public class Rse{
-    
 
-
-    static int [][] a = { {1, 2, 1, 2, 1, 2},
-			  {4, 0, 0, 2, 2, 1},
-			  {1, 1, 1, 1, 1, 4} };
-    static int [][] b = { {1, 2, 3, 4},
-			  {5, 6, 7, 8},
-			  {1, 1, 1, 1} };
     static int tempSum = 0;
-    
-    
-
-
-
-    public static void main(String[] args) {
-
-	
-	
-	System.out.print(allRowSumsEqual(b));
-	
-
-
-    }
 
     public static boolean allRowSumsEqual(int[][] m){
-	
-	
-	int sum = 0;
-	int lengthOfList = m.length;
+	if (m != null){
+	    int sum = 0;
+	    int lengthOfList = m.length;
+	    int nullCount = 0;
+	    //Deklarerar antal kolumner i listan.
 
-	for(int i = 0; i < m.length; i++){
+	    for (int i = 0; i < m.length; i++){
 	    
-	    System.out.print(rowSum(b[i]) + " ");
+		if (m[i] != null){
+	    
+		    rowSum(m[i]);
+		    //Kallar till klassen rowSum med argumentet b[i] som är en rad i listan.
 	   
-	    if(tempSum == sum || sum == 0){
+		    if (tempSum == sum || sum == 0 && lengthOfList != 0){
 		
-		sum = tempSum;
-		lengthOfList = lengthOfList - 1;
-		if(lengthOfList == 0){
-		    System.out.print("Sann!");
-		    return true;
-		}
-	    
-	    } else {
-		System.out.print("Falsk!");
-		
-		return false;
-	    }
-	    
-	}
-	
-       	return false;
-	
+			sum = tempSum;
+			lengthOfList = lengthOfList - 1;
+			//Kollar ifall summan från den föregående raden är samma som nuvarande.
 
+			if (lengthOfList == 0){
+			    return true;
+			    //Då summorna i alla möjliga kolumner är lika
+			}    
+		    } else {
+			return false;
+			//Då summorna i kolumnerna inte är lika
+		    }
+		} else {
+		    nullCount++;
+		    if (nullCount == m.length){
+			return true;
+		    }//Om alla element i listan är null
+		}
+	    }	
+	}
+	return true;
+	//Om m = null
     }
+    //Här slutar allRowSumsEqual
+
     public static int rowSum(int[] v){
 	
 	tempSum = 0;
-	for(int i = 0; i < v.length; i++){
+	for (int i = 0; i < v.length; i++){
 		tempSum = tempSum + v[i];		
 	}	
-       
+	// Här adderas alla tal i den valda raden i listan och sparas i ett minne.
 	return tempSum;
     }
-
-  
+    //Här slutar rowSum
 }
